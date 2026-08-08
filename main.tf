@@ -21,10 +21,15 @@ provider "aws" {
   region = "ap-south-1"
 
 }
-
+variable "create_instance" {
+  description = "Whether to create the EC2 instance"
+  type        = bool
+  default     = true
+}
 resource "aws_instance" "demo-1" {
 
   ami = "ami-048f4445314bcaa09"
+ count = var.create_instance ? 1 : 0
 
   instance_type = "t3.micro"
   tags = {

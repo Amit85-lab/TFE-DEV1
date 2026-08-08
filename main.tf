@@ -21,10 +21,17 @@ provider "aws" {
   region = "ap-south-1"
 
 }
+variable "create_instance" {
+  description = "Whether to create the EC2 instance"
+  type        = bool
+  default     = true
+}
+
 
 resource "aws_instance" "demo-1" {
 
   ami = "ami-048f4445314bcaa09"
+ count = var.create_instance ? 1 : 0
 
   instance_type = "t3.micro"
   tags = {
@@ -36,14 +43,14 @@ resource "aws_instance" "demo-1" {
 
 }
 output "instanceid" {
-  value = aws_instance.demo-1.id
+  value = var.create_instance ? aws_instance.demo_1[0].id : null
 
 }
 output "instancepublicip" {
-  value = aws_instance.demo-1.public_ip
+  value = var.create_instance ? aws_instance.demo_1[0].public_ip : null
 
 }
 output "instanceprivateip" {
-  value = aws_instance.demo-1.private_ip
+  value = var.create_instance ? aws_instance.demo_1[0].private_ip : null
 
 }

@@ -28,7 +28,7 @@ variable "create_instance" {
 }
 
 
-resource "aws_instance" "demo-1" {
+resource "aws_instance" "demo_1" {
 
   ami = "ami-048f4445314bcaa09"
  count = var.create_instance ? 1 : 0

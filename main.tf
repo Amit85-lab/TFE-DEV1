@@ -29,7 +29,7 @@ resource "aws_instance" "demo-1" {
   instance_type = "t3.micro"
   tags = {
 
-    Name = "learn-terraform"
+    Name = "learn-terraform1"
 
   }
 
